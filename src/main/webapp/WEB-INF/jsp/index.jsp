@@ -77,7 +77,7 @@
 </nav>
 
 <div class="container">
-  <div class="row">
+  <div class="row" id="main_prods">
     <div class="col-sm-3">
       <div class="panel panel-primary">
         <div class="panel-heading">BLACK FRIDAY DEAL</div>
@@ -243,6 +243,59 @@
 </div> <!-- cd-user-modal -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="js/main.js"></script> <!-- Gem jQuery -->
+
+<script>
+  jQuery(function(){
+    const mySelect = document.getElementById('main_prods');
+
+    function getCats(callback) {
+      jQuery.ajax({
+        url: './all_prods',
+        method: 'GET',
+        success: callback
+      });
+    }
+
+    function renderCats(response) {
+      for (let i = 0; i < response.length; i++) {
+        const item = response[i];
+        var div = document.createElement("div");
+        div.setAttribute("class", "col-sm-3");
+
+        var div1 = document.createElement("div");
+        div1.setAttribute("class","panel-heading");
+        div1.innerHTML = item.name;
+        div.appendChild(div1);
+
+        var div2 = document.createElement("div");
+        div2.setAttribute("class","panel-body");
+        var img = document.createElement("img");
+        img.setAttribute("src", item.valueOf("photo"));
+        img.setAttribute("class","img-responsive");
+        img.setAttribute("style","width:100%");
+        img.setAttribute("alt","img");
+        div.appendChild(div2);
+
+        var div3 = document.createElement("div");
+        div3.innerHTML = item.valueOf("price");
+        div.appendChild(div3)
+
+
+
+
+
+
+        /*const option = document.createElement('option');
+        const item = response[i];
+        option.innerHTML = item.name;
+        option.value = item.id;
+        mySelect.appendChild(option);*/
+      }
+    }
+
+    getCats(renderCats);
+  });
+</script>
 
 </body>
 </html>

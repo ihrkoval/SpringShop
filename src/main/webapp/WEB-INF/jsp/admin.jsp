@@ -138,7 +138,6 @@
             for (let i = 0; i < response.length; i++) {
                 const option = document.createElement('option');
                 const item = response[i];
-
                 option.innerHTML = item.name;
                 option.value = item.id;
                 mySelect.appendChild(option);

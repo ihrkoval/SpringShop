@@ -1,5 +1,9 @@
 package com.example.entities;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +14,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "Categories")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Category {
 
     @Id
@@ -19,11 +24,11 @@ public class Category {
     private String name;
 
     @OneToMany(mappedBy= "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Product> product = new ArrayList<Product>();
+    private List<Product> product;
 
-    public Category(String name, List<Product> products) {
+    public Category(String name) { //, List<Product> products
         this.name = name;
-        this.product = products;
+        //this.product = products;
     }
 
     public Category(){}
@@ -44,11 +49,12 @@ public class Category {
         this.name = name;
     }
 
+   /*@JsonIgnore
     public List<Product> getProducts() {
-        return product;
-    }
+        return null;
+    }*/
 
-    public void setProducts(List<Product> products) {
+    /*public void setProducts(List<Product> products) {
         this.product = products;
-    }
+    }*/
 }
