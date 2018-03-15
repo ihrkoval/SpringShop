@@ -32,6 +32,7 @@ public class User {
         return orders;
     }
 
+
     public User(){}
     public User(String name, String surname, String phone, String email, String password) {
         this.name = name;

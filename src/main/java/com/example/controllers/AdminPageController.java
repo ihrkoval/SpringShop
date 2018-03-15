@@ -54,7 +54,7 @@ public class AdminPageController implements ServletContextAware {
         ModelAndView mw = new ModelAndView("admin");
         System.out.println(name);
         try {
-            File file = new File(servletContext.getRealPath("/")+"WEB-INF/classes/public/img/goods"+ System.currentTimeMillis()+photo.getOriginalFilename());
+            File file = new File(servletContext.getRealPath("/")+"WEB-INF/classes/public/img/goods/"+ System.currentTimeMillis()+photo.getOriginalFilename());
             FileUtils.writeByteArrayToFile(file, photo.getBytes());
             String path = file.getAbsolutePath();
             Category category = catDao.getOne(cat);
